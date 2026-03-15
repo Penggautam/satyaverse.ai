@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SatyaVerse AI — The World's Most Advanced AI-Powered Market Intelligence Platform</title>
+    <meta name="description" content="SatyaVerse AI — a Penguin International company. 200+ autonomous AI agents + human verification deliver real-time competitive intelligence, pricing analysis, and market insights with unmatched confidence and credibility.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-deeper: #1e40af;
+            --primary-light: #dbeafe;
+            --primary-glow: rgba(37,99,235,0.15);
+            --accent: #7c3aed;
+            --accent-light: #ede9fe;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --warning: #f59e0b;
+            --text: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --bg-subtle: #f1f5f9;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 16px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 32px -4px rgba(0,0,0,0.1), 0 4px 8px -4px rgba(0,0,0,0.04);
+            --shadow-xl: 0 24px 56px -8px rgba(0,0,0,0.14);
+            --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── TOP BAR ─── */
+        .top-bar {
+            background: linear-gradient(90deg, #0f172a, #1e293b);
+            color: #94a3b8;
+            font-size: 12px;
+            padding: 8px 24px;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+        .top-bar a { color: #60a5fa; text-decoration: none; font-weight: 600; }
+        .top-bar a:hover { color: #93bbfc; text-decoration: underline; }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .navbar.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); border-bottom-color: var(--border); }
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+        .logo-icon {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 900; font-size: 17px;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+        }
+        .logo-text { font-size: 21px; font-weight: 800; letter-spacing: -0.7px; }
+        .logo-text span { color: var(--primary); }
+        .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.2s; border-radius: 2px; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--primary) !important; color: #fff !important; padding: 10px 24px !important; border-radius: 8px !important; font-weight: 600 !important; transition: all 0.2s !important; box-shadow: 0 2px 8px rgba(37,99,235,0.25); }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--primary-dark) !important; transform: translateY(-1px); }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; }
+        .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; display: block; }
+
+        /* ─── BUTTONS ─── */
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--primary); color: #fff; padding: 15px 32px;
+            border-radius: var(--radius-sm); text-decoration: none;
+            font-weight: 600; font-size: 15px; border: none; cursor: pointer;
+            transition: all 0.25s; box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--bg); color: var(--text); padding: 15px 32px;
+            border-radius: var(--radius-sm); text-decoration: none;
+            font-weight: 600; font-size: 15px; border: 1px solid var(--border);
+            cursor: pointer; transition: all 0.25s;
+        }
+        .btn-secondary:hover { border-color: var(--text-light); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 600; font-size: 14px; text-decoration: none; transition: gap 0.2s; }
+        .btn-ghost:hover { gap: 12px; }
+        .arrow-svg { width: 18px; height: 18px; }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 120px 32px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #fff 0%, var(--bg-alt) 100%);
+        }
+        .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .hero-bg .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: float 20s ease-in-out infinite; }
+        .hero-bg .orb-1 { width: 600px; height: 600px; background: rgba(37,99,235,0.08); top: -200px; left: -100px; }
+        .hero-bg .orb-2 { width: 500px; height: 500px; background: rgba(124,58,237,0.06); top: -100px; right: -150px; animation-delay: -7s; }
+        .hero-bg .orb-3 { width: 400px; height: 400px; background: rgba(16,185,129,0.05); bottom: -100px; left: 30%; animation-delay: -14s; }
+        @keyframes float { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--primary-light); color: var(--primary-dark);
+            padding: 7px 18px 7px 12px; border-radius: 50px;
+            font-size: 13px; font-weight: 600; margin-bottom: 32px;
+            animation: fadeUp 0.6s ease; border: 1px solid rgba(37,99,235,0.15);
+        }
+        .live-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; position: relative; }
+        .live-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--success); animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite; }
+        @keyframes ping { 0% { transform: scale(1); opacity: 0.75; } 75%, 100% { transform: scale(2); opacity: 0; } }
+        .hero h1 { font-size: clamp(40px, 5.5vw, 72px); font-weight: 900; letter-spacing: -2px; line-height: 1.05; margin-bottom: 24px; animation: fadeUp 0.6s ease 0.1s both; }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+        .hero-subtitle { font-size: 19px; color: var(--text-muted); max-width: 620px; margin: 0 auto 44px; line-height: 1.7; animation: fadeUp 0.6s ease 0.2s both; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.3s both; }
+        .hero-proof { margin-top: 48px; display: flex; align-items: center; justify-content: center; gap: 24px; animation: fadeUp 0.6s ease 0.4s both; font-size: 13px; color: var(--text-muted); }
+        .hero-proof span { display: flex; align-items: center; gap: 6px; }
+        .check-icon { color: var(--success); font-weight: 700; }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar { padding: 0 32px; position: relative; z-index: 2; margin-top: -40px; }
+        .stats-inner {
+            max-width: 1100px; margin: 0 auto; background: #fff;
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 40px 48px; display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 32px; box-shadow: var(--shadow-xl);
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: 40px; font-weight: 900; letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1;
+        }
+        .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-top: 6px; }
+
+        /* ─── LOGOS ─── */
+        .logos-section { padding: 64px 32px; }
+        .logos-section p { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 36px; }
+        .logos-track { display: flex; justify-content: center; align-items: center; gap: 56px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; opacity: 0.35; }
+        .logos-track span { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; white-space: nowrap; }
+
+        /* ─── SECTIONS ─── */
+        .section { padding: 112px 32px; }
+        .section-alt { background: var(--bg-alt); }
+        .section-header { text-align: center; max-width: 660px; margin: 0 auto 72px; }
+        .section-label { display: inline-block; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; background: var(--primary-light); padding: 5px 14px; border-radius: 50px; }
+        .section-header h2 { font-size: clamp(30px, 3.5vw, 46px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.12; margin-bottom: 18px; }
+        .section-header p { font-size: 17px; color: var(--text-muted); line-height: 1.75; }
+
+        /* ─── FEATURES ─── */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 36px 32px; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden;
+        }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); opacity: 0; transition: opacity 0.3s; }
+        .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+        .feature-card:hover::before { opacity: 1; }
+        .feature-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 22px; }
+        .fi-blue { background: #dbeafe; } .fi-purple { background: #ede9fe; } .fi-green { background: #dcfce7; }
+        .fi-orange { background: #ffedd5; } .fi-pink { background: #fce7f3; } .fi-teal { background: #ccfbf1; }
+        .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+        .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+
+        /* ═══════════════════════════════════════════════
+           INTERACTIVE DEMO — RESEARCH AGENT
+           ═══════════════════════════════════════════════ */
+        .demo-section {
+            padding: 112px 32px;
+            background: linear-gradient(180deg, #fff 0%, var(--bg-alt) 100%);
+            overflow: hidden;
+        }
+        .demo-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .demo-browser {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--border);
+        }
+        .browser-dots { display: flex; gap: 7px; }
+        .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .browser-dot:nth-child(1) { background: #ef4444; }
+        .browser-dot:nth-child(2) { background: #f59e0b; }
+        .browser-dot:nth-child(3) { background: #10b981; }
+        .browser-url {
+            flex: 1;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-family: var(--mono);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .browser-url .lock { color: var(--success); font-size: 12px; }
+        .browser-credits {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* App layout inside browser */
+        .app-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr 1fr;
+            min-height: 520px;
+        }
+        .app-sidebar {
+            background: var(--bg-alt);
+            border-right: 1px solid var(--border);
+            padding: 20px 16px;
+        }
+        .sidebar-org {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .sidebar-org-icon {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 800; font-size: 13px;
+        }
+        .sidebar-org-name { font-size: 13px; font-weight: 600; }
+        .sidebar-org-sub { font-size: 11px; color: var(--text-light); }
+        .sidebar-btn {
+            display: flex; align-items: center; gap: 8px;
+            width: 100%; padding: 10px 12px;
+            background: var(--primary); color: #fff;
+            border: none; border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer; font-family: inherit;
+            margin-bottom: 20px;
+        }
+        .sidebar-label { font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; padding: 0 12px; margin-bottom: 8px; }
+        .sidebar-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 12px; border-radius: 6px;
+            font-size: 13px; color: var(--text-muted);
+            cursor: pointer; transition: background 0.15s;
+        }
+        .sidebar-item:hover { background: rgba(0,0,0,0.04); }
+        .sidebar-item-icon { font-size: 14px; width: 18px; text-align: center; }
+        .sidebar-recents { margin-top: 20px; }
+        .sidebar-recent-item { padding: 6px 12px; font-size: 12px; color: var(--text-light); cursor: pointer; border-radius: 4px; transition: all 0.15s; }
+        .sidebar-recent-item:hover { color: var(--text-muted); background: rgba(0,0,0,0.03); }
+        .sidebar-user {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            display: flex; align-items: center; gap: 10px;
+            margin-top: 24px;
+        }
+        .sidebar-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; color: var(--primary);
+        }
+        .sidebar-user-name { font-size: 13px; font-weight: 600; }
+        .sidebar-user-email { font-size: 11px; color: var(--text-light); }
+
+        /* Chat panel */
+        .app-chat {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+        .chat-query {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .chat-chain {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 11px; color: var(--text-light);
+            margin-bottom: 14px;
+        }
+        .chat-chain-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text-light); }
+        .chat-response { flex: 1; }
+        .chat-response p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+        .chat-response strong { color: var(--text); font-weight: 700; }
+        .chat-data-points { margin: 12px 0 16px; }
+        .chat-data-point {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: var(--text-muted); padding: 4px 0;
+        }
+        .chat-data-point::before { content: '›'; color: var(--primary); font-weight: 700; font-size: 16px; }
+        .chat-followup {
+            font-size: 13px; color: var(--primary);
+            font-style: italic; margin-top: 8px;
+        }
+        .chat-input {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-top: auto;
+        }
+        .chat-input span { font-size: 13px; color: var(--text-light); flex: 1; }
+        .chat-input-icons { display: flex; gap: 8px; font-size: 14px; color: var(--text-light); }
+
+        /* Dashboard panel */
+        .app-dashboard {
+            padding: 24px;
+            background: var(--bg-alt);
+        }
+        .dash-tabs {
+            display: flex; gap: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .dash-tab {
+            font-size: 13px; font-weight: 500; color: var(--text-light);
+            cursor: pointer; padding-bottom: 2px; transition: all 0.2s;
+        }
+        .dash-tab.active { color: var(--text); font-weight: 600; border-bottom: 2px solid var(--primary); }
+        .dash-chart-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .dash-chart-type { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; float: right; margin-top: -18px; }
+        .donut-chart {
+            width: 180px; height: 180px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .donut-chart svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .donut-chart circle {
+            fill: none;
+            stroke-width: 32;
+            cx: 90; cy: 90; r: 74;
+        }
+        .donut-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .donut-center-val { font-size: 24px; font-weight: 800; color: var(--text); }
+        .donut-center-label { font-size: 10px; color: var(--text-light); }
+        .donut-legend {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 8px; margin-top: 16px;
+        }
+        .donut-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+        .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+        .dash-charts-section { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+        .dash-charts-title { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; }
+        .dash-chart-links { display: flex; flex-direction: column; gap: 6px; }
+        .dash-chart-link {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: var(--text-muted);
+            padding: 6px 10px; border-radius: 6px;
+            cursor: pointer; transition: background 0.15s;
+        }
+        .dash-chart-link:hover { background: rgba(0,0,0,0.04); }
+        .dash-chart-link::before { content: ''; width: 14px; height: 14px; border-radius: 3px; border: 2px solid var(--border); flex-shrink: 0; }
+
+        /* ═══════════════════════════════════════════════
+           INTERACTIVE DEMO 2 — DECISION INTELLIGENCE
+           ═══════════════════════════════════════════════ */
+        .di-section {
+            padding: 112px 32px;
+            background: #fff;
+        }
+        .di-header {
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
+        .di-label {
+            font-size: 12px; font-weight: 700; color: var(--text-light);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;
+        }
+        .di-title {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.08;
+        }
+        .di-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto 48px;
+        }
+
+        /* Chat widget */
+        .di-chat {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+        }
+        .di-chat-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .di-chat-brand { display: flex; align-items: center; gap: 10px; }
+        .di-chat-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 800; font-size: 14px;
+        }
+        .di-chat-name { font-size: 14px; font-weight: 700; }
+        .di-chat-sub { font-size: 11px; color: var(--text-light); }
+        .di-online {
+            display: flex; align-items: center; gap: 5px;
+            font-size: 11px; color: var(--success); font-weight: 600;
+        }
+        .di-online-dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+        .di-chat-bubble {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 14px; color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .di-chat-input-wrap {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-top: auto;
+        }
+        .di-typing {
+            display: flex; align-items: center; gap: 4px;
+            margin: 12px 0;
+        }
+        .di-typing-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--text-light);
+            animation: typingBounce 1.4s infinite;
+        }
+        .di-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .di-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        /* Data table widget */
+        .di-table-widget {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+        .di-table-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .di-table-title { display: flex; align-items: center; gap: 8px; }
+        .di-table-title-icon { color: var(--success); font-size: 16px; }
+        .di-table-title span { font-size: 14px; font-weight: 600; }
+        .di-table-count { font-size: 12px; color: var(--text-light); background: var(--bg-alt); padding: 3px 10px; border-radius: 50px; font-weight: 600; }
+        .di-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .di-table th {
+            text-align: left;
+            padding: 10px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--border);
+        }
+        .di-table td {
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .di-table tr:last-child td { border-bottom: none; }
+        .di-table .rating { color: var(--success); font-weight: 600; font-family: var(--mono); font-size: 12px; }
+        .di-table .num { font-family: var(--mono); font-size: 12px; color: var(--text-muted); }
+        .di-table-export {
+            padding: 12px 20px;
+            border-top: 1px solid var(--border);
+            display: flex; align-items: center; gap: 16px;
+            font-size: 12px; color: var(--success);
+        }
+        .di-table-export span { font-weight: 600; }
+        .export-formats { display: flex; gap: 8px; margin-left: auto; }
+        .export-btn {
+            padding: 4px 10px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-family: var(--mono);
+        }
+
+        /* Feature cards row */
+        .di-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 48px;
+        }
+        .di-feature-card {
+            padding: 28px 24px;
+        }
+        .di-feature-label { font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+        .di-feature-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+        .di-feature-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        /* Source logos row */
+        .di-sources {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            align-items: center;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+        }
+        .di-source-side {
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .di-source-label { font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+        .di-source-val { font-size: 13px; color: var(--text-muted); }
+        .di-source-val strong { color: var(--text); }
+        .di-source-arrow { font-size: 24px; color: var(--text-light); }
+        .di-source-logos {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+        .di-source-logo {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 16px;
+            color: #fff;
+        }
+
+        /* ═══════════════════════════════════════════════
+           AI x HUMAN SECTION
+           ═══════════════════════════════════════════════ */
+        .aih-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .aih-flow { display: flex; flex-direction: column; }
+        .aih-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            position: relative;
+            transition: all 0.3s;
+        }
+        .aih-step:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+        .aih-step-human {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(37,99,235,0.02), rgba(124,58,237,0.02));
+            box-shadow: 0 0 0 1px var(--primary), var(--shadow);
+        }
+        .aih-step-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .aih-step-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .aih-step-content p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+        .aih-time {
+            position: absolute;
+            top: 24px; right: 20px;
+            font-size: 11px; font-weight: 600;
+            color: var(--text-light);
+            background: var(--bg-alt);
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+        .aih-step-human .aih-time { background: var(--primary-light); color: var(--primary-dark); }
+        .aih-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4px 0;
+        }
+        .aih-connector-line { width: 2px; height: 16px; background: var(--border); }
+        .aih-connector-arrow { font-size: 14px; color: var(--text-light); line-height: 1; }
+        .aih-promise {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            position: sticky;
+            top: 100px;
+        }
+        .aih-promise-badge {
+            display: inline-block;
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+        .aih-promise h3 { font-size: 22px; font-weight: 800; line-height: 1.3; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .aih-promise p { font-size: 14px; color: #94a3b8; line-height: 1.75; }
+        .aih-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .aih-stat { text-align: center; }
+        .aih-stat-val { font-size: 24px; font-weight: 900; color: #fff; }
+        .aih-stat-label { font-size: 11px; color: #64748b; margin-top: 4px; }
+
+        /* ═══════════════════════════════════════════════
+           REST OF SECTIONS
+           ═══════════════════════════════════════════════ */
+
+        /* ─── HOW IT WORKS ─── */
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+        .step-card { text-align: center; padding: 40px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.3s; position: relative; }
+        .step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .step-num { width: 56px; height: 56px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: #fff; }
+        .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+        .step-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+        .step-arrow { position: absolute; right: -16px; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 18px; z-index: 2; }
+
+        /* ─── COMPARISON ─── */
+        .compare-table-wrap { max-width: 900px; margin: 0 auto; overflow-x: auto; }
+        .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+        .compare-table th, .compare-table td { padding: 18px 24px; text-align: left; font-size: 14px; border-bottom: 1px solid var(--border-light); }
+        .compare-table thead th { background: var(--bg-alt); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+        .compare-table thead th:nth-child(2) { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; letter-spacing: 0; text-transform: none; font-size: 15px; }
+        .compare-table tbody td:first-child { font-weight: 600; color: var(--text-secondary); }
+        .compare-table tbody td:nth-child(2) { background: rgba(37,99,235,0.03); font-weight: 600; color: var(--primary-dark); }
+        .compare-table tbody tr:last-child td { border-bottom: none; }
+        .compare-yes { color: var(--success); font-weight: 700; } .compare-no { color: var(--text-light); } .compare-mid { color: var(--warning); font-weight: 600; }
+
+        /* ─── USE CASES ─── */
+        .usecases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .usecase-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 32px; display: flex; gap: 20px; transition: all 0.3s; }
+        .usecase-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .usecase-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+        .usecase-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .usecase-card p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; transition: all 0.3s; display: flex; flex-direction: column; }
+        .testimonial-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+        .tc-stars { color: #f59e0b; font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+        .tc-quote { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 24px; flex: 1; font-style: italic; }
+        .tc-author { display: flex; align-items: center; gap: 12px; }
+        .tc-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--accent-light)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--primary); }
+        .tc-name { font-size: 14px; font-weight: 600; } .tc-role { font-size: 12px; color: var(--text-muted); } .tc-company { font-size: 11px; color: var(--text-light); font-weight: 500; }
+
+        /* ─── PRICING ─── */
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1060px; margin: 0 auto; }
+        .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 44px 32px; text-align: center; transition: all 0.35s; position: relative; }
+        .pricing-card.featured { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary), var(--shadow-xl); transform: scale(1.04); z-index: 2; }
+        .pricing-card.featured::before { content: 'Recommended'; position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; padding: 5px 18px; border-radius: 50px; font-size: 12px; font-weight: 700; }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+        .pricing-card.featured:hover { transform: scale(1.04) translateY(-5px); }
+        .pricing-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        .pricing-card .price-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+        .pricing-card .price { font-size: 48px; font-weight: 900; letter-spacing: -2.5px; margin: 12px 0 4px; }
+        .pricing-card .price span { font-size: 16px; font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
+        .pricing-card .price-note { font-size: 12px; color: var(--text-light); margin-bottom: 28px; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 32px; }
+        .pricing-features li { padding: 9px 0; font-size: 14px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 700; font-size: 14px; margin-top: 1px; }
+        .pricing-card .btn-primary, .pricing-card .btn-secondary { width: 100%; justify-content: center; }
+
+        /* ─── TRUST ─── */
+        .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+        .trust-item { text-align: center; padding: 32px 20px; }
+        .trust-icon { font-size: 32px; margin-bottom: 16px; }
+        .trust-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+        .trust-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        /* ─── FAQ ─── */
+        .faq-list { max-width: 740px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-question { width: 100%; text-align: left; padding: 22px 0; background: none; border: none; cursor: pointer; font-size: 16px; font-weight: 600; color: var(--text); display: flex; justify-content: space-between; align-items: center; font-family: inherit; transition: color 0.2s; }
+        .faq-question:hover { color: var(--primary); }
+        .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-alt); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--text-muted); transition: all 0.3s; flex-shrink: 0; }
+        .faq-question.active .faq-icon { background: var(--primary-light); color: var(--primary); transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        .faq-answer.open { max-height: 400px; }
+        .faq-answer p { font-size: 15px; color: var(--text-muted); line-height: 1.75; padding-bottom: 22px; }
+
+        /* ─── CTA ─── */
+        .cta-section { padding: 120px 32px; text-align: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%); color: #fff; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 60%); pointer-events: none; }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-section h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 18px; }
+        .cta-section p { font-size: 18px; color: #94a3b8; max-width: 520px; margin: 0 auto 40px; line-height: 1.75; }
+        .cta-section .btn-primary { background: #fff; color: var(--text); font-size: 16px; padding: 16px 36px; box-shadow: 0 4px 16px rgba(255,255,255,0.15); }
+        .cta-section .btn-primary:hover { background: #f1f5f9; box-shadow: 0 8px 28px rgba(255,255,255,0.2); }
+        .cta-proof { margin-top: 32px; display: flex; justify-content: center; gap: 32px; font-size: 13px; color: #64748b; }
+        .cta-proof span { display: flex; align-items: center; gap: 6px; }
+
+        /* ─── FOOTER ─── */
+        .footer { background: #0a0f1e; color: #94a3b8; padding: 72px 32px 32px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 48px; }
+        .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 300px; margin-top: 16px; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+        .footer-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 14px; }
+        .footer-logo-text { color: #fff; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        .footer-logo-text span { color: #60a5fa; }
+        .penguin-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; font-size: 11px; color: #64748b; }
+        .penguin-badge strong { color: #94a3b8; font-weight: 600; }
+        .footer-col h4 { color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col a { display: block; color: #64748b; text-decoration: none; font-size: 14px; padding: 5px 0; transition: color 0.2s; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { max-width: 1200px; margin: 56px auto 0; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #475569; }
+        .footer-socials { display: flex; gap: 16px; }
+        .footer-socials a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #64748b; text-decoration: none; font-size: 14px; transition: all 0.2s; }
+        .footer-socials a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .features-grid, .pricing-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .step-arrow { display: none; }
+            .trust-grid, .di-features { grid-template-columns: repeat(2, 1fr); }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .app-layout { grid-template-columns: 1fr; }
+            .app-sidebar { display: none; }
+            .app-layout { grid-template-columns: 1fr 1fr; }
+            .di-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: #fff; padding: 24px 32px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-lg); gap: 16px; }
+            .hamburger { display: flex; }
+            .features-grid, .steps-grid, .usecases-grid, .testimonials-grid, .pricing-grid, .trust-grid, .di-features, .aih-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .pricing-card.featured:hover { transform: translateY(-5px); }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 28px 24px; }
+            .hero { padding: 100px 24px 80px; }
+            .stats-bar { margin-top: -24px; padding: 0 16px; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .hero-proof, .cta-proof { flex-direction: column; gap: 8px; }
+            .compare-table th, .compare-table td { padding: 12px 14px; font-size: 13px; }
+            .app-layout { grid-template-columns: 1fr; }
+            .app-sidebar { display: none; }
+            .app-dashboard { display: none; }
+            .di-grid { grid-template-columns: 1fr; }
+            .di-sources { grid-template-columns: 1fr; text-align: center; }
+            .di-source-arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── TOP BAR ─── -->
+<div class="top-bar">A <a href="#">Penguin International</a> company &mdash; Trusted by Fortune 500 enterprises worldwide</div>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <div class="logo-icon">S</div>
+            <div class="logo-text">Satya<span>Verse</span></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#demo">Live Demo</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#ai-x-human">AI x Human</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#cta" class="nav-cta">Start Free</a></li>
+        </ul>
+        <button class="hamburger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+    <div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+    <div class="hero-content">
+        <div class="hero-badge"><span class="live-dot"></span> AI + Human Verified Intelligence &mdash; 200+ Agents Running Live</div>
+        <h1>The World's Fastest <span class="gradient-text">Market Intelligence</span> Engine</h1>
+        <p class="hero-subtitle">SatyaVerse deploys 200+ autonomous AI agents backed by human expert verification — every insight is scored for confidence and credibility before it reaches you. We put our stake in the intelligence we deliver, at the best speed and scale in the industry.</p>
+        <div class="hero-buttons">
+            <a href="#cta" class="btn-primary">Get Verified Intelligence in 20 Hours <svg class="arrow-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="#demo" class="btn-secondary">See Live Demo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
+        </div>
+        <div class="hero-proof">
+            <span><span class="check-icon">&#10003;</span> No credit card required</span>
+            <span><span class="check-icon">&#10003;</span> AI + Human verified insights</span>
+            <span><span class="check-icon">&#10003;</span> SOC 2 & ISO 27001 certified</span>
+        </div>
+    </div>
+</section>
+
+<!-- ─── STATS BAR ─── -->
+<div class="stats-bar">
+    <div class="stats-inner reveal">
+        <div class="stat-item"><div class="stat-number" data-target="200">0+</div><div class="stat-label">Autonomous AI Agents</div></div>
+        <div class="stat-item"><div class="stat-number" data-target="20">0 hrs</div><div class="stat-label">Verified Intelligence Report</div></div>
+        <div class="stat-item"><div class="stat-number" data-target="25">0x</div><div class="stat-label">Faster Than Manual Research</div></div>
+        <div class="stat-item"><div class="stat-number" data-target="1000">0+</div><div class="stat-label">Data Sources Monitored</div></div>
+    </div>
+</div>
+
+
+<!-- ─── FEATURES ─── -->
+<section class="section" id="features">
+    <div class="section-header reveal">
+        <span class="section-label">Capabilities</span>
+        <h2>Intelligence capabilities that set the standard</h2>
+        <p>Where others offer data, we deliver decisions. Our AI agents don't just collect — they think, correlate, and recommend.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card reveal"><div class="feature-icon fi-blue">&#128269;</div><h3>360° Competitive Intelligence</h3><p>Track every competitor move across pricing, product launches, marketing campaigns, hiring patterns, and strategic shifts — all from a single dashboard, updated in real-time.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon fi-purple">&#129302;</div><h3>200+ Autonomous AI Agents</h3><p>Our proprietary multi-agent architecture deploys specialized agents that work in orchestrated teams — scraping, validating, cross-referencing, and synthesizing data 24/7/365.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon fi-green">&#128200;</div><h3>Predictive Pricing Engine</h3><p>Go beyond monitoring. Our ML-powered pricing engine predicts competitor price movements before they happen, giving you a 48-hour strategic advantage on every decision.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon fi-orange">&#9889;</div><h3>20-Hour Verified Delivery</h3><p>AI agents gather and synthesize data in hours. Then our human analysts verify every insight for confidence and credibility — because speed without accuracy is just noise. Reports in 20 hours, guaranteed.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon fi-pink">&#129309;</div><h3>AI x Human Verification</h3><p>Every data point is scored for confidence by AI, then audited by domain experts. We stake our reputation on every report — you get intelligence you can act on without second-guessing.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon fi-teal">&#127758;</div><h3>Global Market Radar</h3><p>Monitor markets across 50+ countries and 200+ industries simultaneously. Multi-language analysis, regional trend detection, and cross-border competitive mapping built in.</p></div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     INTERACTIVE DEMO 1 — PLATFORM UI
+     ═══════════════════════════════════════ -->
+<section class="demo-section" id="demo">
+    <div class="demo-wrapper">
+        <div class="section-header reveal">
+            <span class="section-label">Live Platform Demo</span>
+            <h2>Ask anything. Get intelligence instantly.</h2>
+            <p>Our AI Research Agent understands natural language queries, gathers data across thousands of sources, and returns structured intelligence with charts and exportable tables.</p>
+        </div>
+        <div class="demo-browser reveal">
+            <div class="browser-bar">
+                <div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div>
+                <div class="browser-url"><span class="lock">&#128274;</span> app.satyaverse.ai</div>
+                <div class="browser-credits">&#9889; 498 credits left</div>
+            </div>
+            <div class="app-layout">
+                <!-- Sidebar -->
+                <div class="app-sidebar">
+                    <div class="sidebar-org">
+                        <div class="sidebar-org-icon">S</div>
+                        <div><div class="sidebar-org-name">SatyaVerse Org</div><div class="sidebar-org-sub">Organization</div></div>
+                    </div>
+                    <button class="sidebar-btn">+ New research</button>
+                    <div class="sidebar-label">Quick Access</div>
+                    <div class="sidebar-item"><span class="sidebar-item-icon">&#9889;</span> Credits</div>
+                    <div class="sidebar-item"><span class="sidebar-item-icon">&#128101;</span> Members</div>
+                    <div class="sidebar-item"><span class="sidebar-item-icon">&#128451;</span> Trash</div>
+                    <div class="sidebar-recents">
+                        <div class="sidebar-label">Recents</div>
+                        <div class="sidebar-recent-item">APAC SaaS Landscape</div>
+                        <div class="sidebar-recent-item">EV Battery Supply Chain</div>
+                        <div class="sidebar-recent-item">Fintech Hiring Surge</div>
+                        <div class="sidebar-recent-item">QSR Expansion Map</div>
+                        <div class="sidebar-recent-item">Pharma Patent Expiry</div>
+                    </div>
+                    <div class="sidebar-user">
+                        <div class="sidebar-avatar">GJ</div>
+                        <div><div class="sidebar-user-name">Gautam J.</div><div class="sidebar-user-email">g@satyaverse.ai</div></div>
+                    </div>
+                </div>
+
+                <!-- Chat Panel -->
+                <div class="app-chat">
+                    <div class="chat-query">Track pricing changes for top 500 electronics SKUs across Amazon, Flipkart & Croma this week</div>
+                    <div class="chat-chain"><span class="chat-chain-dot"></span> Chain of Thought &bull; Verified by analyst <span class="chat-chain-dot"></span></div>
+                    <div class="chat-response">
+                        <p>Tracked <strong>487 SKUs</strong> across 3 platforms. <strong>143 price changes</strong> detected this week.</p>
+                        <p>Here's what I found:</p>
+                        <div class="chat-data-points">
+                            <div class="chat-data-point">Product name, brand & category</div>
+                            <div class="chat-data-point">Current price vs. last week's price</div>
+                            <div class="chat-data-point">Platform-wise price comparison</div>
+                            <div class="chat-data-point">Stock-out alerts (12 SKUs at risk)</div>
+                        </div>
+                        <div class="chat-followup">Want me to flag only price drops greater than 10%?</div>
+                    </div>
+                    <div class="chat-input">
+                        <span>Ask something...</span>
+                        <div class="chat-input-icons">+ &#128206;</div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Panel -->
+                <div class="app-dashboard">
+                    <div class="dash-tabs">
+                        <div class="dash-tab">Files</div>
+                        <div class="dash-tab active">Dashboard</div>
+                    </div>
+                    <div class="dash-chart-title">Price Change Breakdown</div>
+                    <div class="dash-chart-type">Pie Chart</div>
+                    <div class="donut-chart">
+                        <svg viewBox="0 0 180 180">
+                            <circle stroke="#ef4444" stroke-dasharray="158 307" style="opacity:0.9"/>
+                            <circle stroke="#2563eb" stroke-dasharray="116 349" stroke-dashoffset="-158"/>
+                            <circle stroke="#10b981" stroke-dasharray="84 381" stroke-dashoffset="-274"/>
+                            <circle stroke="#f59e0b" stroke-dasharray="107 358" stroke-dashoffset="-358"/>
+                        </svg>
+                        <div class="donut-center">
+                            <div class="donut-center-val">143</div>
+                            <div class="donut-center-label">Changes</div>
+                        </div>
+                    </div>
+                    <div class="donut-legend">
+                        <div class="donut-legend-item"><span class="legend-dot" style="background:#ef4444"></span> Price Drops — 34%</div>
+                        <div class="donut-legend-item"><span class="legend-dot" style="background:#2563eb"></span> Price Hikes — 25%</div>
+                        <div class="donut-legend-item"><span class="legend-dot" style="background:#10b981"></span> New Listings — 18%</div>
+                        <div class="donut-legend-item"><span class="legend-dot" style="background:#f59e0b"></span> Stock-outs — 23%</div>
+                    </div>
+                    <div class="dash-charts-section">
+                        <div class="dash-charts-title">Charts (3)</div>
+                        <div class="dash-chart-links">
+                            <div class="dash-chart-link">Price Change Breakdown</div>
+                            <div class="dash-chart-link">Platform Comparison</div>
+                            <div class="dash-chart-link">Category Heatmap</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     INTERACTIVE DEMO 2 — DECISION INTELLIGENCE
+     ═══════════════════════════════════════ -->
+<section class="di-section" id="intelligence">
+    <div class="di-header reveal">
+        <div class="di-label">Research</div>
+        <div class="di-title">Verified market intelligence at your fingertips.</div>
+    </div>
+    <div class="di-grid">
+        <!-- Chat widget -->
+        <div class="di-chat reveal">
+            <div class="di-chat-header">
+                <div class="di-chat-brand">
+                    <div class="di-chat-icon">S</div>
+                    <div><div class="di-chat-name">SatyaVerse</div><div class="di-chat-sub">AI Research Agent</div></div>
+                </div>
+                <div class="di-online"><span class="di-online-dot"></span> Online</div>
+            </div>
+            <div class="di-chat-bubble">What would you like to research?</div>
+            <div class="di-typing"><div class="di-typing-dot"></div><div class="di-typing-dot"></div><div class="di-typing-dot"></div></div>
+            <div class="di-chat-bubble" style="background:#fff; border: 1px solid var(--primary-light); color: var(--primary-dark);">List all D2C skincare brands in India that raised Series A+ funding in 2025</div>
+            <div style="height:16px"></div>
+            <div class="di-chat-input-wrap">
+                <span style="font-size:13px; color: var(--text-light); flex:1;">Ask something...</span>
+                <span style="font-size:16px; color: var(--text-light); cursor:pointer;">&#10148;</span>
+            </div>
+        </div>
+
+        <!-- Data table -->
+        <div class="di-table-widget reveal">
+            <div class="di-table-header">
+                <div class="di-table-title">
+                    <span class="di-table-title-icon">&#128196;</span>
+                    <span>india_d2c_skincare_funded_2025.csv</span>
+                </div>
+                <div class="di-table-count">34 results</div>
+            </div>
+            <table class="di-table">
+                <thead>
+                    <tr><th>#</th><th>Brand</th><th>Round</th><th>Raised</th><th>Investors</th><th>HQ</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="num">1</td><td>Minimalist</td><td class="rating">Series B</td><td class="num">$28M</td><td class="num">Peak XV, Sequoia</td><td>Jaipur</td></tr>
+                    <tr><td class="num">2</td><td>Dot & Key</td><td class="rating">Series A</td><td class="num">$16M</td><td class="num">Lighthouse, Anicut</td><td>Kolkata</td></tr>
+                    <tr><td class="num">3</td><td>Pilgrim</td><td class="rating">Series B</td><td class="num">$22M</td><td class="num">Fireside, 3one4</td><td>Mumbai</td></tr>
+                    <tr><td class="num">4</td><td>Foxtale</td><td class="rating">Series A</td><td class="num">$12M</td><td class="num">Kae Capital, IIFL</td><td>Bengaluru</td></tr>
+                    <tr><td class="num">5</td><td>Deconstruct</td><td class="rating">Series A</td><td class="num">$8M</td><td class="num">Matrix Partners</td><td>Mumbai</td></tr>
+                    <tr><td class="num">6</td><td>Aqualogica</td><td class="rating">Series A</td><td class="num">$6M</td><td class="num">DSG Consumer</td><td>Bengaluru</td></tr>
+                </tbody>
+            </table>
+            <div class="di-table-export">
+                <span>&#10003; Ready to export</span>
+                <div class="export-formats">
+                    <span class="export-btn">CSV</span>
+                    <span class="export-btn">JSON</span>
+                    <span class="export-btn">Sheets</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="di-features">
+        <div class="di-feature-card reveal">
+            <div class="di-feature-label">Instant</div>
+            <div class="di-feature-title">Ask in plain English, get structured data</div>
+            <div class="di-feature-desc">No SQL, no APIs, no scraping scripts. Describe your research need in natural language and get clean, verified, tabular results in minutes.</div>
+        </div>
+        <div class="di-feature-card reveal">
+            <div class="di-feature-label">Verified</div>
+            <div class="di-feature-title">Confidence-scored, human-audited</div>
+            <div class="di-feature-desc">Every data point carries a confidence score. Flagged entries are reviewed by domain analysts before delivery — because your strategy deserves verified intelligence.</div>
+        </div>
+        <div class="di-feature-card reveal">
+            <div class="di-feature-label">Connected</div>
+            <div class="di-feature-title">Export anywhere, integrate everywhere</div>
+            <div class="di-feature-desc">One-click export to CSV, JSON, Google Sheets, or PDF. Pipe results directly into your CRM, BI tools, or pricing engine via API or webhooks.</div>
+        </div>
+    </div>
+
+    <!-- Source logos / time comparison -->
+    <div class="di-sources reveal">
+        <div class="di-source-side">
+            <div class="di-source-label">Time to Complete</div>
+            <div class="di-source-val"><strong>Manual research:</strong> 15+ hours</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <div class="di-source-logos">
+                <div class="di-source-logo" style="background:#ff9900; font-size:20px; font-weight:900;">a</div>
+                <div class="di-source-logo" style="background:#0077b5;">in</div>
+                <div class="di-source-logo" style="background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">&#9737;</div>
+            </div>
+            <div style="font-size:10px; color: var(--text-light); text-align:center;">Sources</div>
+        </div>
+        <div class="di-source-side" style="text-align:right;">
+            <div class="di-source-label">Export to</div>
+            <div class="di-source-val"><strong>AI + Human verified:</strong> Under 20 hours</div>
+            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:4px;">
+                <span class="export-btn">&#128196; Google Sheets</span>
+                <span class="export-btn">&#128196; PDF</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section section-alt" id="how-it-works">
+    <div class="section-header reveal">
+        <span class="section-label">Process</span>
+        <h2>From question to intelligence in 4 steps</h2>
+        <p>Simpler than hiring an analyst. Faster than any consulting firm. More accurate than manual research.</p>
+    </div>
+    <div class="steps-grid">
+        <div class="step-card reveal"><span class="step-arrow">&#8594;</span><div class="step-num">1</div><h3>Brief Us</h3><p>Tell us what you need — competitors, markets, pricing, or custom data. Takes 10 minutes, not a 3-week scoping exercise.</p></div>
+        <div class="step-card reveal"><span class="step-arrow">&#8594;</span><div class="step-num">2</div><h3>Agents Deploy</h3><p>200+ AI agents activate instantly — scraping, validating, cross-referencing data from 1,000+ sources simultaneously.</p></div>
+        <div class="step-card reveal"><span class="step-arrow">&#8594;</span><div class="step-num">3</div><h3>Intelligence Synthesized</h3><p>Raw data transforms into structured insights with AI-generated analysis, visualizations, and strategic recommendations.</p></div>
+        <div class="step-card reveal"><div class="step-num">4</div><h3>Continuous Delivery</h3><p>Receive ongoing intelligence via dashboard, API, Slack, or email. Alerts trigger on competitor moves in real-time.</p></div>
+    </div>
+</section>
+
+<!-- ─── AI x HUMAN ─── -->
+<section class="section" id="ai-x-human">
+    <div class="section-header reveal">
+        <span class="section-label">AI x Human</span>
+        <h2>We stake our reputation on every insight</h2>
+        <p>AI gathers at machine speed. Humans verify with domain expertise. The result: intelligence you can bet your strategy on.</p>
+    </div>
+    <div class="aih-grid">
+        <div class="aih-flow reveal">
+            <div class="aih-step">
+                <div class="aih-step-icon" style="background:#dbeafe;">&#129302;</div>
+                <div class="aih-step-content">
+                    <h3>AI Agents Gather</h3>
+                    <p>200+ specialized agents scrape, extract, and normalize data from 1,000+ sources in parallel — around the clock, at machine speed.</p>
+                </div>
+                <div class="aih-time">Minutes</div>
+            </div>
+            <div class="aih-connector"><div class="aih-connector-line"></div><div class="aih-connector-arrow">&#8595;</div></div>
+            <div class="aih-step">
+                <div class="aih-step-icon" style="background:#ede9fe;">&#128200;</div>
+                <div class="aih-step-content">
+                    <h3>AI Synthesizes & Scores</h3>
+                    <p>Raw data is cross-referenced, deduplicated, and scored for confidence. Each data point gets a reliability score based on source credibility and corroboration.</p>
+                </div>
+                <div class="aih-time">Hours</div>
+            </div>
+            <div class="aih-connector"><div class="aih-connector-line"></div><div class="aih-connector-arrow">&#8595;</div></div>
+            <div class="aih-step aih-step-human">
+                <div class="aih-step-icon" style="background:#dcfce7;">&#128101;</div>
+                <div class="aih-step-content">
+                    <h3>Human Experts Verify</h3>
+                    <p>Domain analysts review flagged insights, validate edge cases, add strategic context, and sign off on every report. No unverified claim leaves our platform.</p>
+                </div>
+                <div class="aih-time">The SatyaVerse Difference</div>
+            </div>
+            <div class="aih-connector"><div class="aih-connector-line"></div><div class="aih-connector-arrow">&#8595;</div></div>
+            <div class="aih-step">
+                <div class="aih-step-icon" style="background:#ffedd5;">&#128640;</div>
+                <div class="aih-step-content">
+                    <h3>Delivered With Confidence</h3>
+                    <p>You receive intelligence with clear confidence scores, source attribution, and analyst notes — ready for boardroom decisions, not just dashboards.</p>
+                </div>
+                <div class="aih-time">&lt; 20 Hours</div>
+            </div>
+        </div>
+        <div class="aih-promise reveal">
+            <div class="aih-promise-badge">Our Promise</div>
+            <h3>Speed without accuracy is just noise.<br>We deliver both.</h3>
+            <p>Other platforms dump raw data and call it "intelligence." We put human expertise behind every insight because your decisions deserve more than algorithm output. Every SatyaVerse report carries our credibility stamp — we stand behind what we deliver.</p>
+            <div class="aih-stats">
+                <div class="aih-stat">
+                    <div class="aih-stat-val">99.4%</div>
+                    <div class="aih-stat-label">Data Accuracy Rate</div>
+                </div>
+                <div class="aih-stat">
+                    <div class="aih-stat-val">3-Layer</div>
+                    <div class="aih-stat-label">Verification Process</div>
+                </div>
+                <div class="aih-stat">
+                    <div class="aih-stat-val">0</div>
+                    <div class="aih-stat-label">Unverified Reports Shipped</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── USE CASES ─── -->
+<section class="section section-alt" id="use-cases">
+    <div class="section-header reveal"><span class="section-label">Use Cases</span><h2>Intelligence tailored to your battlefield</h2><p>From hyperlocal pricing wars to global market expansion — our agents adapt to how you compete.</p></div>
+    <div class="usecases-grid">
+        <div class="usecase-card reveal"><div class="usecase-icon fi-blue">&#128205;</div><div><h3>Location Assessment</h3><p>Evaluate market potential of any geography — foot traffic patterns, competitor density, demographic fit, and demand signals. AI agents scan thousands of data points per location, verified by analysts, so you expand with confidence, not guesswork.</p></div></div>
+        <div class="usecase-card reveal"><div class="usecase-icon fi-purple">&#128172;</div><div><h3>Sentiment Analysis</h3><p>Go beyond star ratings. Our agents analyze millions of reviews, social mentions, and forum discussions to surface what customers truly feel about your brand and competitors — with human-verified sentiment scoring and trend alerts.</p></div></div>
+        <div class="usecase-card reveal"><div class="usecase-icon fi-green">&#128200;</div><div><h3>Pricing Benchmarking</h3><p>Continuously benchmark your pricing against competitors across platforms, categories, and geographies. Detect undercutting within minutes, identify pricing sweet spots, and receive analyst-verified pricing strategy recommendations.</p></div></div>
+        <div class="usecase-card reveal"><div class="usecase-icon fi-orange">&#127970;</div><div><h3>Enterprise & Corporate Strategy</h3><p>Monitor competitor M&A activity, leadership changes, patent filings, and strategic pivots. Get early-warning signals 30 days before they become public news — every signal human-verified for credibility.</p></div></div>
+        <div class="usecase-card reveal"><div class="usecase-icon fi-pink">&#128176;</div><div><h3>Investment & Due Diligence</h3><p>Due diligence in days, not months. Track portfolio company markets, identify sector trends, monitor competitive moats, and build data-backed investment theses with confidence-scored intelligence.</p></div></div>
+        <div class="usecase-card reveal"><div class="usecase-icon fi-teal">&#128640;</div><div><h3>Growth & Revenue Teams</h3><p>Map competitor ad spend, decode their content strategy, benchmark SEO positioning, and uncover market whitespace — turning verified intelligence into pipeline and revenue.</p></div></div>
+    </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section" id="testimonials">
+    <div class="section-header reveal"><span class="section-label">Results</span><h2>Don't take our word for it</h2><p>Hear from the teams that turned intelligence into competitive advantage.</p></div>
+    <div class="testimonials-grid">
+        <div class="testimonial-card reveal"><div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tc-quote">"SatyaVerse delivered a verified competitive report within a day. What impressed us most wasn't just the speed — every insight came with confidence scores and analyst notes. We cancelled our $120K consulting retainer within the first month."</div><div class="tc-author"><div class="tc-avatar">RK</div><div><div class="tc-name">Rajesh Krishnan</div><div class="tc-role">VP Strategy & Intelligence</div><div class="tc-company">Fortune 500 Retail Conglomerate</div></div></div></div>
+        <div class="testimonial-card reveal"><div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tc-quote">"We track 42,000 SKUs across 12 competitors. SatyaVerse's pricing agents detect changes within 30 minutes — our repricing engine automatically adjusts. Revenue impact: +18% margin in Q1."</div><div class="tc-author"><div class="tc-avatar">PS</div><div><div class="tc-name">Priya Subramanian</div><div class="tc-role">Head of Pricing & Analytics</div><div class="tc-company">Leading D2C Platform</div></div></div></div>
+        <div class="testimonial-card reveal"><div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tc-quote">"The human-verified POC was a game-changer for board buy-in. Unlike other AI tools, every data point had a confidence score and source trail. Now SatyaVerse powers our entire market expansion strategy across Southeast Asia."</div><div class="tc-author"><div class="tc-avatar">AM</div><div><div class="tc-name">Arjun Malhotra</div><div class="tc-role">Chief Growth Officer</div><div class="tc-company">Series C SaaS Startup</div></div></div></div>
+    </div>
+</section>
+
+
+<!-- ─── TRUST ─── -->
+<section class="section">
+    <div class="section-header reveal"><span class="section-label">Security & Trust</span><h2>Enterprise-grade security, built in</h2><p>Your intelligence data is protected by the same standards trusted by banks and governments.</p></div>
+    <div class="trust-grid">
+        <div class="trust-item reveal"><div class="trust-icon">&#128274;</div><h4>SOC 2 Type II</h4><p>Independently audited security controls verified annually.</p></div>
+        <div class="trust-item reveal"><div class="trust-icon">&#127758;</div><h4>ISO 27001</h4><p>International information security management certification.</p></div>
+        <div class="trust-item reveal"><div class="trust-icon">&#128272;</div><h4>End-to-End Encryption</h4><p>AES-256 encryption at rest and TLS 1.3 in transit. Zero exceptions.</p></div>
+        <div class="trust-item reveal"><div class="trust-icon">&#127919;</div><h4>GDPR Compliant</h4><p>Full data governance with retention policies and right-to-delete support.</p></div>
+    </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="section section-alt" id="faq">
+    <div class="section-header reveal"><span class="section-label">FAQ</span><h2>Frequently asked questions</h2><p>Everything you need to know about SatyaVerse's AI-powered market intelligence platform.</p></div>
+    <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">How does the AI x Human verification process work?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Our 200+ AI agents gather and synthesize data in hours. Then human domain analysts review every critical insight for confidence and credibility — verifying sources, validating edge cases, and adding strategic context. You receive a complete, verified intelligence report within 20 hours. We put our stake in every report we deliver.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">What makes SatyaVerse different from traditional market research?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Other AI tools dump raw, unverified data and call it intelligence. SatyaVerse combines 200+ AI agents monitoring 1,000+ sources with human expert verification — every insight is scored for confidence and credibility. We deliver 25x faster than manual research, but unlike pure-AI tools, we stake our reputation on accuracy. Speed and trust, not speed alone.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">What data sources do your AI agents cover?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Our agents pull from 1,000+ sources including competitor websites, e-commerce platforms (Amazon, Flipkart, Shopify stores), social media, job boards, patent databases, SEC filings, news outlets, app stores, review platforms, and custom sources specific to your industry.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">Do I need technical expertise to use the platform?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Not at all. SatyaVerse is designed for strategy, product, and business teams — not engineers. Your dashboard delivers insights in plain language with clear visualizations. For technical teams, we also offer full API access, webhook integrations, and custom data pipelines.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">Who is Penguin International?<span class="faq-icon">+</span></button><div class="faq-answer"><p>SatyaVerse is a sister concern of Penguin International, a globally recognized enterprise with decades of experience across technology, consulting, and innovation. This backing gives SatyaVerse the stability, resources, and enterprise relationships to deliver world-class intelligence at scale.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-question" onclick="toggleFaq(this)">Is my intelligence data secure?<span class="faq-icon">+</span></button><div class="faq-answer"><p>Absolutely. We maintain SOC 2 Type II and ISO 27001 certifications, use AES-256 encryption at rest and TLS 1.3 in transit, enforce role-based access controls, and maintain full audit trails. Your data is never shared with other clients or third parties.</p></div></div>
+    </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" id="cta">
+    <div class="cta-content reveal">
+        <h2>See verified intelligence — in 20 hours</h2>
+        <p>Your competitors rely on raw AI output. You'll have human-verified intelligence with confidence scores. Get a free, no-commitment proof of concept.</p>
+        <a href="mailto:hello@satyaverse.ai" class="btn-primary">Get Your Free Intelligence Report <svg class="arrow-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="cta-proof"><span>&#10003; Free 20-hour verified POC</span><span>&#10003; No contracts</span><span>&#10003; No credit card</span><span>&#10003; Cancel anytime</span></div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo"><div class="footer-logo-icon">S</div><div class="footer-logo-text">Satya<span>Verse</span></div></div>
+            <p>The world's fastest AI-powered market intelligence platform. 200+ autonomous agents delivering real-time competitive intelligence to enterprises worldwide.</p>
+            <div class="penguin-badge">&#128039; A sister concern of <strong>&nbsp;Penguin International</strong></div>
+        </div>
+        <div class="footer-col"><h4>Product</h4><a href="#features">Features</a><a href="#demo">Live Demo</a><a href="#ai-x-human">AI x Human</a><a href="#ai-x-human">AI x Human</a><a href="#">API Docs</a><a href="#">Changelog</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Penguin International</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Press</a><a href="#">Contact</a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Security</a><a href="#">GDPR</a><a href="#">Cookie Policy</a></div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 SatyaVerse AI — A Penguin International Company. All rights reserved.</span>
+        <div class="footer-socials"><a href="#">&#120143;</a><a href="#">in</a><a href="#">&#9741;</a></div>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10); });
+
+    // Mobile nav
+    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+
+    // FAQ
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+        if (!isOpen) { answer.classList.add('open'); btn.classList.add('active'); }
+    }
+
+    // Reveal
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Animated counters
+    function animateCounters() {
+        document.querySelectorAll('.stat-number').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.textContent.replace(/[0-9]/g, '');
+            let current = 0;
+            const step = Math.ceil(target / 60);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = current.toLocaleString() + suffix;
+            }, 20);
+        });
+    }
+    const sObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { animateCounters(); sObs.unobserve(e.target); } }); }, { threshold: 0.5 });
+    const sEl = document.querySelector('.stats-inner');
+    if (sEl) sObs.observe(sEl);
+
+    // ─── LIVE DEMO: Typing animation for chat queries ───
+    function typeText(el, text, speed = 40) {
+        el.textContent = '';
+        el.style.borderRight = '2px solid var(--primary)';
+        let i = 0;
+        const timer = setInterval(() => {
+            el.textContent += text[i];
+            i++;
+            if (i >= text.length) {
+                clearInterval(timer);
+                el.style.borderRight = 'none';
+            }
+        }, speed);
+    }
+
+    // Demo 1: Platform chat typing
+    const chatQuery = document.querySelector('.chat-query');
+    const chatQueryText = chatQuery ? chatQuery.textContent : '';
+    const chatResponse = document.querySelector('.chat-response');
+    const chatChain = document.querySelector('.chat-chain');
+    if (chatQuery && chatResponse && chatChain) {
+        chatResponse.style.opacity = '0';
+        chatChain.style.opacity = '0';
+        chatQuery.textContent = '';
+        const demoObs1 = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    setTimeout(() => typeText(chatQuery, chatQueryText, 35), 500);
+                    setTimeout(() => { chatChain.style.transition = 'opacity 0.5s'; chatChain.style.opacity = '1'; }, 500 + chatQueryText.length * 35 + 400);
+                    setTimeout(() => { chatResponse.style.transition = 'opacity 0.6s'; chatResponse.style.opacity = '1'; }, 500 + chatQueryText.length * 35 + 800);
+                    demoObs1.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        demoObs1.observe(chatQuery.closest('.demo-browser'));
+    }
+
+    // Demo 2: DI chat typing
+    const diBubbles = document.querySelectorAll('.di-chat-bubble');
+    const diTyping = document.querySelector('.di-typing');
+    if (diBubbles.length >= 2 && diTyping) {
+        const userBubble = diBubbles[1];
+        const userText = userBubble.textContent;
+        userBubble.style.opacity = '0';
+        diTyping.style.opacity = '0';
+        const diTable = document.querySelector('.di-table-widget');
+        if (diTable) diTable.style.opacity = '0';
+        const demoObs2 = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    setTimeout(() => { diTyping.style.transition = 'opacity 0.3s'; diTyping.style.opacity = '1'; }, 800);
+                    setTimeout(() => {
+                        diTyping.style.opacity = '0';
+                        userBubble.style.opacity = '1';
+                        userBubble.textContent = '';
+                        typeText(userBubble, userText, 30);
+                    }, 2200);
+                    setTimeout(() => { if (diTable) { diTable.style.transition = 'opacity 0.8s'; diTable.style.opacity = '1'; } }, 2200 + userText.length * 30 + 600);
+                    demoObs2.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        demoObs2.observe(diBubbles[0].closest('.di-chat'));
+    }
+
+    // Animate donut chart on scroll
+    const donut = document.querySelector('.donut-chart');
+    if (donut) {
+        const circles = donut.querySelectorAll('circle');
+        circles.forEach(c => { c.style.opacity = '0'; c.style.transition = 'opacity 0.5s, stroke-dasharray 1s cubic-bezier(0.4,0,0.2,1)'; });
+        const donutObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    circles.forEach((c, i) => { setTimeout(() => { c.style.opacity = '1'; }, i * 200); });
+                    donutObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        donutObs.observe(donut);
+    }
+
+    // Animate table rows in Demo 2
+    const diRows = document.querySelectorAll('.di-table tbody tr');
+    diRows.forEach((row, i) => {
+        row.style.opacity = '0';
+        row.style.transform = 'translateX(20px)';
+        row.style.transition = `opacity 0.4s ease ${i * 0.1}s, transform 0.4s ease ${i * 0.1}s`;
+    });
+    const tableObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                diRows.forEach(r => { r.style.opacity = '1'; r.style.transform = 'translateX(0)'; });
+                tableObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    const tableEl = document.querySelector('.di-table');
+    if (tableEl) tableObs.observe(tableEl);
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(link.getAttribute('href'));
+            if (t) {
+                const off = document.querySelector('.navbar').offsetHeight + 20;
+                window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - off, behavior: 'smooth' });
+                document.getElementById('navLinks').classList.remove('open');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
